@@ -24,4 +24,12 @@ public enum Command {
 		return getValue();
 	}
 
+	public static Command getEnumFromString(String string) {
+		for (Command command : Command.values()) {
+			if (command.getValue().equals(string)) {
+				return command;
+			}
+		}
+		return null;
+	}
 }
