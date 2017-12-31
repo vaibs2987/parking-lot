@@ -40,7 +40,7 @@ public class ParkingServiceImpl implements ParkingService {
 			return;
 		}
 		if (this.carSlotMap.size() == this.PARKING_SIZE) {
-			System.out.println("Sorry, parking is full");
+			System.out.println("Sorry, parking lot is full");
 			return;
 		}
 		Collections.sort(availableSlots);
@@ -101,7 +101,7 @@ public class ParkingServiceImpl implements ParkingService {
 			List<String> registrationList = this.carColorMap.get(color);
 			for (int i = 0; i < registrationList.size(); i++) {
 				if (i != registrationList.size() - 1) {
-					System.out.print(registrationList.get(i) + ",");
+					System.out.print(registrationList.get(i) + ", ");
 				} else {
 					System.out.print(registrationList.get(i));
 				}
@@ -122,7 +122,7 @@ public class ParkingServiceImpl implements ParkingService {
 			System.out.println();
 			return;
 		}
-		System.out.println("Slot No.\tRegistration No.\tColor");
+		System.out.println("Slot No.\tRegistration No\tColor");
 		Car car;
 		for (int i = 1; i <= this.PARKING_SIZE; i++) {
 			String key = Integer.toString(i);
@@ -167,7 +167,7 @@ public class ParkingServiceImpl implements ParkingService {
 		Collections.sort(slotList);
 		for (int j = 0; j < slotList.size(); j++) {
 			if (j != slotList.size() - 1) {
-				System.out.print(slotList.get(j) + ",");
+				System.out.print(slotList.get(j) + ", ");
 			} else {
 				System.out.print(slotList.get(j));
 			}
