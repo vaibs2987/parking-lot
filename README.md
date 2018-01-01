@@ -8,6 +8,7 @@
 #Build Instructions
 
 Run the following command -
+
 mvn clean install
 
 
@@ -16,5 +17,5 @@ mvn clean install
 #Running the project
 
 From the project directory, run this command - 
-  1. $ java -jar target/gojek-1.0.jar (Interactive command-line mode)
-  2. $ java -jar target/gojek-1.0.jar <inputfile> (File input)
+  1. $ java -jar target/parking-lot-0.0.1-SNAPSHOT.jar (Interactive command-line mode)
+  2. $ java -jar target/parking-lot-0.0.1-SNAPSHOT.jar <inputfile> (File input)
