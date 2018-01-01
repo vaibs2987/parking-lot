@@ -1,5 +1,7 @@
 package parking.lot.service;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
@@ -10,9 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import junit.framework.TestCase;
-
-public class InputServiceTest extends TestCase{
+public class InputServiceTest {
 	private Map<String, Method> map = new HashMap<String, Method>();
 	private CommandService commandService = new CommandService(map);
 	private ParkingService parkingService = new ParkingServiceImpl();
@@ -27,10 +27,8 @@ public class InputServiceTest extends TestCase{
 
 	@Test
 	public void parseTextInput() throws Exception {
-		inputService.parseInput("hello");
-		assertEquals("Invalidinput", outContent.toString().trim().replace(" ", ""));
-		inputService.parseInput("status");
-		assertEquals("Invalidinput\nSorry,parkinglotisnotcreated", outContent.toString().trim().replace(" ", ""));
+		inputService.parseInput("create");
+		assertTrue("Not a valid input.".equalsIgnoreCase(outContent.toString().trim()));
 	}
 
 	@After
