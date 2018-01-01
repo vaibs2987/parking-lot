@@ -19,7 +19,7 @@ public class CommandService {
 			map.put(Command.CREATE_PARKING_LOT.getValue(),
 					ParkingService.class.getMethod("createParkingLot", String.class));
 			map.put(Command.PARK.getValue(),
-					ParkingService.class.getMethod("parkVechicle", String.class, String.class));
+					ParkingService.class.getMethod("parkVehicle", String.class, String.class));
 			map.put(Command.LEAVE.getValue(), ParkingService.class.getMethod("leaveParkingSlot", String.class));
 			map.put(Command.STATUS.getValue(), ParkingService.class.getMethod("parkingStatus"));
 			map.put(Command.REGISTRATION_NUMBERS_FOR_CAR_WITH_COLOUR.getValue(),

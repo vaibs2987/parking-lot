@@ -7,19 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 import parking.lot.entity.Car;
+import parking.lot.util.AppConstant;
 
 public class ParkingServiceImpl implements ParkingService {
-	int PARKING_SIZE = 0;
-	Map<String, Car> carSlotMap;
-	Map<String, String> carRegSlotMap;
-	List<Integer> availableSlots;
-	Map<String, List<String>> carColorMap;
+	private int PARKING_SIZE = 0;
+	private Map<String, Car> carSlotMap;
+	private Map<String, String> carRegSlotMap;
+	private List<Integer> availableSlots;
+	private Map<String, List<String>> carColorMap;
+	private static String NEW_PARKING_SLOT_CREATED_MSG = "Created parking lot with %s slots";
 
 	public void createParkingLot(String lotCount) {
 		try {
 			this.PARKING_SIZE = Integer.parseInt(lotCount);
 		} catch (Exception e) {
-			System.out.println("Invalid lot count");
+			System.out.println(AppConstant.INVALID_SLOT_NO);
 			System.out.println();
 			return;
 		}
@@ -30,17 +32,17 @@ public class ParkingServiceImpl implements ParkingService {
 		this.carSlotMap = new HashMap<String, Car>();
 		this.carRegSlotMap = new HashMap<String, String>();
 		this.carColorMap = new HashMap<String, List<String>>();
-		System.out.println("Created parking lot with " + lotCount + " slots");
+		System.out.println(String.format(NEW_PARKING_SLOT_CREATED_MSG, lotCount));
 	}
 
-	public void parkVechicle(String registrationNo, String color) {
+	public void parkVehicle(String registrationNo, String color) {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created.");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 
 			return;
 		}
 		if (this.carSlotMap.size() == this.PARKING_SIZE) {
-			System.out.println("Sorry, parking lot is full");
+			System.out.println(AppConstant.PARKING_FULL);
 			return;
 		}
 		Collections.sort(availableSlots);
@@ -65,11 +67,11 @@ public class ParkingServiceImpl implements ParkingService {
 
 	public void leaveParkingSlot(String slotNo) {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 			return;
 		}
 		if (this.carSlotMap.size() == 0) {
-			System.out.println("Parking lot is empty");
+			System.out.println(AppConstant.PARKING_LOT_EMPTY);
 			System.out.println();
 			return;
 		}
@@ -94,7 +96,7 @@ public class ParkingServiceImpl implements ParkingService {
 
 	public void printRegistrationNumbersByColor(String color) {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 			return;
 		}
 		if (this.carColorMap.containsKey(color)) {
@@ -114,11 +116,11 @@ public class ParkingServiceImpl implements ParkingService {
 
 	public void parkingStatus() {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 			return;
 		}
 		if (carSlotMap.size() == 0) {
-			System.out.println("Parking lot is empty");
+			System.out.println(AppConstant.PARKING_LOT_EMPTY);
 			System.out.println();
 			return;
 		}
@@ -136,24 +138,24 @@ public class ParkingServiceImpl implements ParkingService {
 
 	public void printSlotNumberByRegNo(String regNo) {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 			return;
 		}
 		if (this.carRegSlotMap.containsKey(regNo)) {
 			System.out.println(this.carRegSlotMap.get(regNo));
 		} else {
-			System.out.println("Not found");
+			System.out.println(AppConstant.VEHICLE_NOT_FOUND);
 			System.out.println();
 		}
 	}
 
 	public void printSlotNumbersByColor(String color) {
 		if (this.PARKING_SIZE == 0) {
-			System.out.println("Sorry, parking lot is not created");
+			System.out.println(AppConstant.PARKING_SLOT_NOT_CREATED);
 			return;
 		}
 		if (!carColorMap.containsKey(color)) {
-			System.out.println("Not found");
+			System.out.println(AppConstant.VEHICLE_NOT_FOUND);
 			System.out.println();
 			return;
 		}

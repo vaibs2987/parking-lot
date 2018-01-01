@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import parking.lot.entity.Command;
+import parking.lot.util.AppConstant;
 
 public class InputService {
 	private CommandService commandService;
@@ -29,11 +30,11 @@ public class InputService {
 					parseInput(line.trim());
 				}
 			} catch (IOException ex) {
-				System.out.println("Error in reading the input file.");
+				System.out.println(AppConstant.ERROR_FILE_READ);
 				ex.printStackTrace();
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found in the path specified.");
+			System.out.println(AppConstant.FILE_NOT_FOUND);
 			e.printStackTrace();
 		}
 	}
@@ -42,12 +43,12 @@ public class InputService {
 		String[] stringArray = inputString.split(" ");
 		Command command = Command.getEnumFromString(stringArray[0]);
 		if (command == null) {
-			System.out.println("Not a valid input.");
+			System.out.println(AppConstant.INVALID_INPUT);
 			return;
 		}
 		Method method = commandService.getMap().get(stringArray[0]);
 		if (method == null) {
-			System.out.println("Not a valid input");
+			System.out.println(AppConstant.INVALID_INPUT);
 			return;
 		}
 		try {
@@ -74,7 +75,7 @@ public class InputService {
 				method.invoke(parkingService, stringArray[1]);
 				break;
 			default:
-				System.out.println("Not a valid input.");
+				System.out.println(AppConstant.INVALID_INPUT);
 				break;
 			}
 		} catch (IllegalAccessException e) {

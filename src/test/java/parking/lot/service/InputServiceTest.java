@@ -12,6 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import parking.lot.util.AppConstant;
+
 public class InputServiceTest {
 	private Map<String, Method> map = new HashMap<String, Method>();
 	private CommandService commandService = new CommandService(map);
@@ -28,7 +30,7 @@ public class InputServiceTest {
 	@Test
 	public void parseTextInput() throws Exception {
 		inputService.parseInput("create");
-		assertTrue("Not a valid input.".equalsIgnoreCase(outContent.toString().trim()));
+		assertTrue(AppConstant.INVALID_INPUT.equalsIgnoreCase(outContent.toString().trim()));
 	}
 
 	@After
